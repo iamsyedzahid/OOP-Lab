@@ -45,7 +45,7 @@ class WeekDays {
         }
         cout<<"Yesterday was "<<this->days[(CurrentDay-1)]<<endl;
     }
-    void getNthDyFromToday(int n)
+    void getNthDayFromToday(int n)
     {
         cout<<"Nth day is "<<this->days[(CurrentDay+n)%7]<<endl;
     }
@@ -58,6 +58,6 @@ int main()
     w2.getCurrentDay();
     w2.getNextDay();
     w2.getPreviousDay();
-    w2.getNthDyFromToday(8);
+    w2.getNthDayFromToday(8);
     return 0;
 }
