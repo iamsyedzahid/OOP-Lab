@@ -54,7 +54,7 @@ public:
         Student::displayPerson();
         displayStudent();
         displayTeacher();
-        cout << "Behold, my cursed existence: " << this << endl;
+        cout << "Address: " << this << endl;
     }
 };
 
