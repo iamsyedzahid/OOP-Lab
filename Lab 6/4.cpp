@@ -1,3 +1,6 @@
+// code has errors, we stdied in theory that its diamond problem,
+// we havent done solution yet, so i am getting issues in this code and also in question 6
+
 #include <iostream>
 using namespace std;
 
