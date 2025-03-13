@@ -46,8 +46,7 @@ public:
 
 class GraduateStudent : public Student, public Teacher {
 public:
-    GraduateStudent(string n, int a, string id, int grade, string sub, int room)
-        : Student(n, a, id, grade), Teacher(n, a, sub, room) {}
+    GraduateStudent(string n, int a, string id, int grade, string sub, int room) : Person(n, a), Student(n, a, id, grade), Teacher(n, a, sub, room) {}
 
     void displayGraduateStudent() const {
         cout << "Graduate Student Details:" << endl;
