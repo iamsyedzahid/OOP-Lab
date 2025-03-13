@@ -58,7 +58,7 @@ public:
 
     void displayGraduateStudent() const
     {
-        cout << "---- Graduate Student Details ----" << endl;
+        cout << "Graduate Student Details:" << endl;
         Student::displayStudent();
         cout << "Subject Teaching: " << subject << endl;
         cout << "Teaching Room: " << roomNumber << endl;
