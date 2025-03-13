@@ -1,5 +1,3 @@
-// the question given has diamond problem which we havent studied, so it has error
-
 #include <iostream>
 using namespace std;
 
@@ -54,22 +52,21 @@ class GraduateStudent : public Student, public Teacher
 {
 public:
     GraduateStudent(string n, int a, string id, int grade, string sub, int room)
-        : Person(n, a), Student(n, a, id, grade), Teacher(n, a, sub, room) {}
+        : Student(n, a, id, grade), Teacher(n, a, sub, room) {}
 
     void displayGraduateStudent() const
     {
         cout << "Graduate Student Details:" << endl;
-        Student::displayStudent();
-        cout << "Subject Teaching: " << subject << endl;
-        cout << "Teaching Room: " << roomNumber << endl;
+        displayStudent();
+        displayTeacher();
     }
 };
 
 int main()
 {
-    GraduateStudent Graduate("AzaanUllah", 19, "24K-0015", 20, "B-AI", 32);
+    GraduateStudent g1("Ali Ahmed", 22, "24K015", 16, "AI", 29);
 
-    Graduate.displayGraduateStudent();
+    g1.displayGraduateStudent();
 
     return 0;
 }
