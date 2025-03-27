@@ -117,7 +117,6 @@ int main()
     saad.calcInterest();
     saad.withdraw(8000);
     saad.showStatement();
-
     cout << "\n";
 
     FixedAcc muqeet(102, 15000, "Muqeet", 5, 12);
