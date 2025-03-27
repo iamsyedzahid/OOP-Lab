@@ -4,143 +4,121 @@ using namespace std;
 class Person 
 {
 protected:
-    string name;
-    int id;
-    string address;
-    string phone;
-    string email;
+    string name, id, address, phoneNumber, email;
 
 public:
-    Person(string n, int i, string a, string p, string e) 
+    Person(string n, string i, string a, string p, string e) 
     {
         name = n;
         id = i;
         address = a;
-        phone = p;
+        phoneNumber = p;
         email = e;
     }
 
     virtual void displayInfo() 
     {
-        cout << "Name: " << name << " | ID: " << id << " | Address: " << address 
-             << " | Phone: " << phone << " | Email: " << email << endl;
+        cout << "Name: " << name << " | ID: " << id << endl;
+        cout << "Address: " << address << " | Phone: " << phoneNumber << " | Email: " << email << endl;
     }
 };
 
 class Student : public Person 
 {
-    string courses;
-    double gpa;
-    int year;
+    string coursesEnrolled[5];  // Fixed array for courses (max 5)
+    double GPA;
+    int enrollmentYear;
+    int courseCount;
 
 public:
-    Student(string n, int i, string a, string p, string e, string c, double g, int y) 
-        : Person(n, i, a, p, e) 
+    Student(string n, string i, string a, string p, string e, double g, int y) : Person(n, i, a, p, e) 
     {
-        courses = c;
-        gpa = g;
-        year = y;
+        GPA = g;
+        enrollmentYear = y;
+        courseCount = 0;
+    }
+
+    void enrollCourse(string course) 
+    {
+        if (courseCount < 5) 
+        {
+            coursesEnrolled[courseCount++] = course;
+        }
+        else 
+        {
+            cout << "Cannot enroll in more courses!" << endl;
+        }
     }
 
     void displayInfo() override 
     {
         Person::displayInfo();
-        cout << "Courses: " << courses << " | GPA: " << gpa << " | Year: " << year << endl;
+        cout << "GPA: " << GPA << " | Enrollment Year: " << enrollmentYear << endl;
+        cout << "Courses Enrolled: ";
+        for (int i = 0; i < courseCount; i++) 
+        {
+            cout << coursesEnrolled[i] << " ";
+        }
+        cout << endl;
     }
 };
 
 class Professor : public Person 
 {
-    string dept;
-    string courses;
+    string department;
+    string coursesTaught[3];  // Fixed array for courses (max 3)
     double salary;
+    int courseCount;
 
 public:
-    Professor(string n, int i, string a, string p, string e, string d, string c, double s) 
-        : Person(n, i, a, p, e) 
+    Professor(string n, string i, string a, string p, string e, string d, double s) : Person(n, i, a, p, e) 
     {
-        dept = d;
-        courses = c;
+        department = d;
         salary = s;
+        courseCount = 0;
+    }
+
+    void assignCourse(string course) 
+    {
+        if (courseCount < 3) 
+        {
+            coursesTaught[courseCount++] = course;
+        }
+        else 
+        {
+            cout << "Cannot assign more courses!" << endl;
+        }
     }
 
     void displayInfo() override 
     {
         Person::displayInfo();
-        cout << "Department: " << dept << " | Courses: " << courses << " | Salary: $" << salary << endl;
-    }
-};
-
-class Staff : public Person 
-{
-    string dept;
-    string pos;
-    double salary;
-
-public:
-    Staff(string n, int i, string a, string p, string e, string d, string po, double s) 
-        : Person(n, i, a, p, e) 
-    {
-        dept = d;
-        pos = po;
-        salary = s;
-    }
-
-    void displayInfo() override 
-    {
-        Person::displayInfo();
-        cout << "Department: " << dept << " | Position: " << pos << " | Salary: $" << salary << endl;
-    }
-};
-
-class Course 
-{
-    int courseId;
-    string courseName;
-    int credits;
-    string instructor;
-    string schedule;
-
-public:
-    Course(int id, string name, int cr, string ins, string sch) 
-    {
-        courseId = id;
-        courseName = name;
-        credits = cr;
-        instructor = ins;
-        schedule = sch;
-    }
-
-    void registerStudent(Student &s) 
-    {
-        cout << s.name << " registered for " << courseName << endl;
-    }
-
-    void displayCourse() 
-    {
-        cout << "Course ID: " << courseId << " | Name: " << courseName 
-             << " | Credits: " << credits << " | Instructor: " << instructor 
-             << " | Schedule: " << schedule << endl;
+        cout << "Department: " << department << " | Salary: $" << salary << endl;
+        cout << "Courses Taught: ";
+        for (int i = 0; i < courseCount; i++) 
+        {
+            cout << coursesTaught[i] << " ";
+        }
+        cout << endl;
     }
 };
 
 int main() 
 {
-    Student saad("Saad", 101, "Karachi", "123456789", "saad@example.com", "AI, ML", 3.7, 2024);
-    Professor muqeet("Muqeet", 201, "Lahore", "987654321", "muqeet@example.com", "CS", "OOP, DSA", 75000);
-    Staff zahid("Zahid", 301, "Islamabad", "567891234", "zahid@example.com", "Admin", "Manager", 50000);
+    Student saad("Saad", "S101", "Karachi", "0300-1234567", "saad@uni.edu", 3.8, 2022);
+    Professor muqeet("Muqeet", "P201", "Lahore", "0321-9876543", "muqeet@uni.edu", "CS", 80000);
 
-    Course oop(401, "Object Oriented Programming", 3, "Muqeet", "MWF 10:00AM");
+    saad.enrollCourse("Artificial Intelligence");
+    saad.enrollCourse("Data Structures");
 
-    saad.displayInfo();
-    cout << "\n";
+    muqeet.assignCourse("Machine Learning");
+    muqeet.assignCourse("Operating Systems");
+
+    cout << "\n--- Professor Details ---" << endl;
     muqeet.displayInfo();
-    cout << "\n";
-    zahid.displayInfo();
-    cout << "\n";
 
-    oop.displayCourse();
-    oop.registerStudent(saad);
+    cout << "\n--- Student Details ---" << endl;
+    saad.displayInfo();
 
     return 0;
 }
