@@ -7,7 +7,7 @@ protected:
     string model;
     double rate;
 public:
-    virtual double getDailyRate() = 0;
+    virtual const double getDailyRate() = 0;
     virtual void displayDetails() = 0;
 };
 
@@ -19,11 +19,11 @@ public:
         model = m;
         rate = r;
     }
-    const double getDailyRate()
+    const double getDailyRate() override
     {
         return rate;
     }
-    void displayDetails()
+    void displayDetails() override
     {
         cout << "Car Model: " << model << endl;
         cout << "Daily Rate: Rs" << rate << endl;
@@ -38,11 +38,11 @@ public:
         model = m;
         rate = r;
     }
-    const double getDailyRate()
+    const double getDailyRate() override
     {
         return rate;
     }
-    void displayDetails()
+    void displayDetails() override
     {
         cout << "Bike Model: " << model << endl;
         cout << "Daily Rate: Rs" << rate << endl;
