@@ -1,5 +1,5 @@
-#ifndef ZAHIDBOOK_H
-#define ZAHIDBOOK_H
+#ifndef BOOK_H
+#define BOOK_H
 
 #include <string>
 using namespace std;
